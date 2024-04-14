@@ -9,7 +9,7 @@ header
     display: flex;
     flex-direction: row;
 	justify-content: space-between;
-	background: #010101;
+	background: black;
 	align-items: center;
 	height: 70px;
 }
@@ -60,7 +60,7 @@ header nav li a
 {
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    background-color: #010101;
+    background-color: black;
     background-image: url(images/capitol_night.jpeg);
     background-size: contain;
     background-position: bottom;
@@ -179,3 +179,23 @@ header nav li a
 {
     background-color: rgba(214, 212, 157, 1);
 }
+
+.login-form,
+.signup-form
+{
+    width: clamp(20rem, 40vw, 30rem);  
+    display: flex;
+    flex-direction: column;
+    border: #cccccc;
+    border-width: 5px;
+    margin-top: 65px;
+}
+
+.login-form h2,
+.signup-form h2
+{
+    align-self: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+

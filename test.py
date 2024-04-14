@@ -1,19 +1,20 @@
 import pytest
-from website.auth import is_password_valid
+from website.auth import password_authenticator
 
 
 
 def test_password_validator() -> None:
-    assert is_password_valid("") == False
-    assert is_password_valid("abcdefgh") == False
-    assert is_password_valid("Abcdefgh") == False
-    assert is_password_valid("A2cdefgh") == False
-    assert is_password_valid("A2#defgh") == True
-
-
-def test_all() -> None:
-    test_password_validator()
+    assert password_authenticator("abcDEF1") == "too short"
+    assert password_authenticator("ABCDEF123!") == "missing a lowercase letter"
+    assert password_authenticator("abcdef123!") == "missing an uppercase letter"
+    assert password_authenticator("AbcdefgH!") == "missing a number"
+    assert password_authenticator("AbcdefgH9") == "missing a special character"
+    assert password_authenticator("AbcdefgH1#") == 0
+    assert password_authenticator("AbcdefgH1!") == 0
+    assert password_authenticator("ABCDabcd1234!@#$") == 0
+    assert password_authenticator("Aa1!Bb2@Cc3#Dd4$Ee5%Ff6^Gg7&Hh8*Ii9(Jj0)Kk-Ll_Mm+Nn/OoPpQqRrSsTtUuVvWwXxYyZz") == 0
+    assert password_authenticator("") == "too short"
 
 
 if __name__ == "__test__":
-    test_all()
+    test_password_validator()
