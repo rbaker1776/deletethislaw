@@ -4,6 +4,7 @@ import re
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
+from flask_login import login_user, login_required, logout_user, current_user
 
 
 
@@ -21,6 +22,8 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash("Logged in successfully!", category="success")
+                login_user(user, remember=True)
+                return redirect(url_for("views.home"))
             else:
                 flash("Incorrect password, try again.", category="error")
         else:
@@ -59,6 +62,7 @@ def sign_up():
             new_user = User(email=email, name=name, password=generate_password_hash(password, method="pbkdf2:sha1"))
             db.session.add(new_user)
             db.session.commit()
+            login_user(new_user, remember=True)
             flash("Account created!", category="success")
             return redirect(url_for("views.home"))
 
@@ -66,10 +70,15 @@ def sign_up():
 
 
 @auth.route("/logout")
+@login_required
 def logout():
-    return "<p>logout</p>"
+    logout_user()
+    return redirect(url_for("auth.login"))
 
 
+@auth.route("/reset-password")
+def reset_password():
+    return render_template("home.html")
 
 
 def password_authenticator(password: str):

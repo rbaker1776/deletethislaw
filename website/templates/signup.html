@@ -1,12 +1,12 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %}
 {% block content %}
 <div class="signup-form container-fluid">
-    <form method="post">
+    <form method="POST">
         <h2 algin="center">Sign up</h2>
         <div class="form-group">
             <label for="email">Email Address</label>
             <input 
-                type="text" 
+                type="email" 
                 name="email" 
                 id="email" 
                 class="form-control" 
@@ -33,6 +33,12 @@
                 placeholder="Enter your password"
             />
         </div>
+        <ul class="password-requirements">
+            <li>Password must be at least 8 characters in length</li>
+            <li>Password must contain at least 1 lowercase and uppercase letter</li>
+            <li>Password must contain at least 1 number</li>
+            <li>Password must contain at least 1 special character</li>
+        </ul>
         <div class="form-group">
             <label for="password">Confirm Password</label>
             <input 
