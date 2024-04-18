@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(150), unique=True)
+    email = db.Column(db.String(150), unique=True, name="email")
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
 
@@ -22,12 +22,10 @@ class Post(db.Model):
     upvotes = db.Column(db.Integer)
     comments = db.relationship("Comment", backref="post")
 
-'''
+
 class Comment(db.Model):
     __tablename__ = "comment"
 
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(600))
     post_id = db.Column(db.Integer, db.ForeignKey("post.id", name="comment_post_fk"))
-
-'''

@@ -116,81 +116,6 @@ header nav li a
     padding: 20px;
 }
 
-.post-cards .post
-{
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    overflow: hidden; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 16em;
-    height: 24em;
-}
-
-.post .thumbnail
-{
-    flex: 1;
-    overflow: hidden;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.post .post-info
-{
-    padding: 20px;
-    background-color: #fff;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.post .post-info h3
-{
-    font-size: 16pt;
-    margin-bottom: 10px;
-}
-
-.post-info p 
-{
-    font-size: 12pt;
-    flex: 1;
-    margin-bottom: 20px;
-}
-
-.post .post-info a
-{
-    align-self: center;
-}
-
-.post .btn
-{
-    align-self: flex-end; /* Align button to the end of the container */
-    padding: 8px 16px;
-    background-color: rgba(214, 212, 157, 0.7);
-    color: black;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.post  .btn:hover
-{
-    background-color: rgba(214, 212, 157, 1);
-}
-
-.login-form,
-.signup-form,
-.createpost-form
-{
-    width: clamp(20rem, 40vw, 30rem);  
-    display: flex;
-    flex-direction: column;
-    border: #cccccc;
-    border-width: 5px;
-    margin-top: 65px;
-}
 
 .login-form h2,
 .signup-form h2,
@@ -200,15 +125,32 @@ header nav li a
     text-align: center;
     margin-bottom: 50px;
 }
-/*
-.signup-form ul
+
+
+#main-forum .post
 {
-    margin-top: 0;
-    padding-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.signup-form li
+
+#main-forum .post *
 {
-    font-size: 10pt;
-    color: rgb(80, 80, 80);
+    margin: 0 10px;
+}
+
+
+#main-forum .post .post-info .post-desc
+{
+    width: clamp(20rem, 80vw, 70rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+#main-forum .post .upvotes
+{
+    display: flex;
 }

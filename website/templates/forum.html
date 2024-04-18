@@ -1,4 +1,40 @@
 {% extends "base.html" %} {% block title %}Forum{% endblock %}
 {% block content %}
+<div class="container" id="main-forum">
+    <h1 class="mt-4 mb-3">All Posts</h1>
+    {% for post in posts %}
+        <div class="post">
+            <div class="post-info">
+                <h5 class="post-title">{{ post.title }}</h5>
+                <p class="post-desc">{{ post.description }}</p>
+            </div>
+            <div class="upvotes">
+                <form action="/upvote" method="POST">
+                    <button type="submit" class="upvote-btn" onclick="toggle_upvote('{{ post.id }}')">
+                        <i id="upvote-icon-{{ post.id }}" class="far fa-arrow-alt-circle-up"></i>
+                    </button>
+                </form> 
+                <p class="upvote-count">{{ post.upvotes }}</p>
+                <style>
+                    #main-forum .post .upvotes .upvote-btn {
+                        border: none;
+                        background: transparent;
+                        cursor: pointer;
+                    }
+                </style>
+                <script>
+                    var is_upvoted = false;
 
+                    function toggle_upvote(post_id)
+                    {
+                        var upvote_icon = document.getElementById("upvote-icon-" + post_id);
+                        upvote_icon.classList.toggle("fas")
+                        upvote_icon.classList.toggle("far")
+                        is_upvoted = !is_upvoted;
+                    }
+                </script>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

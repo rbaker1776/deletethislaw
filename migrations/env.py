@@ -100,8 +100,7 @@ def run_migrations_online():
         context.configure(
             connection=connection,
             target_metadata=get_metadata(),
-            **conf_args,
-			render_as_batch=True,
+            **conf_args
         )
 
         with context.begin_transaction():

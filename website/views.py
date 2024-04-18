@@ -16,7 +16,8 @@ def home():
 
 @views.route("/forum")
 def forum():
-    return render_template("forum.html")
+    posts = Post.query.all()
+    return render_template("forum.html", posts=posts)
 
 
 @views.route("/createpost", methods=["GET", "POST"])
@@ -37,10 +38,14 @@ def create_post():
                 upvotes=0, 
                 comments=[]
             )
-            print(new_post.jurisdiction)
             db.session.add(new_post)
             db.session.commit()
-            #flash("Post successfully added. Thank you!", category="success")
-            #return render_template("forum.html")
+            flash("Post successfully added. Thank you!", category="success")
+            return render_template("forum.html", posts=Post.query.all())
 
     return render_template("createpost.html", username=current_user.name)
+
+
+@views.route("/upvote", methods=["GET", "POST"])
+def upvote():
+    return render_template("forum.html", posts=Post.query.all())
